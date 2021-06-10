@@ -9,6 +9,7 @@
       </p>
       <p>
         Figuring out the nature of the real world has obsessed scientists and philosophers for millennia.
+        Three hundred years ago, the Irish empiricist prescient observation: The only thing we can perceive are our perceptions.
       </p>
     </section>
     <section>
@@ -18,27 +19,28 @@
       <h2>Messing with the light</h2>
       <ul>
         <li>
-          Quantum
+          Quantum mechanics is the physicist's most accurate model for describing the world of the atom.
         </li>
         <li>
-          But it also
+          But it also makes some of the most persuasive arguments that conscious perception is integral to the workings of the universe.
         </li>
         <li>
-          Quantum
+          Quantum theory tells us that an unobserved small object.
         </li>
       </ul>
       <h3>What accomplishes this collapse?</h3>
       <p>
-        What accomplishes this collapse?
+        What accomplishes this collapse? Messing with it. Hitting it with a bit of light in order to take its picture. Just looking at it does the job.
       </p>
       <p>
-        Experiments suggest mere knowledge
+        Experiments suggest mere knowledge in the experimenter's mind is sufficient to collapse a wave function and convert possibility to reality.
       </p>
     </section>
     <section class="bg-pattern">
       <h2>Want higher?</h2>
       <p>
         Before these experiments most physicists believed in an objective, independent universe.
+        They still clung to the assumption that physical states exist in some absolute sense before they are measured.
       </p>
     </section>
     <section class="bg-pattern">
@@ -64,8 +66,10 @@
         10145 Tallinn, Eesti
       </p>
     </section>
-    <section>
-      map
+    <section class="p-0">
+      <div class="map-responsive">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2029.0428264019786!2d24.758314916501337!3d59.43236028169496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469294a0841313f9%3A0x355dccd90b569857!2sMaakri%2023a%2C%2010145%20Tallinn!5e0!3m2!1sen!2see!4v1623329884265!5m2!1sen!2see" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
     </section>
   </div>
 </template>
@@ -77,13 +81,26 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 .bg-top {
   height: 283px;
   background: url('~@/assets/images/mobile-top.png') no-repeat center center;
+
+  @include media-breakpoint-up(md) {
+    height: 800px;
+    background: #000 url('~@/assets/images/top.png') no-repeat center center;
+  }
 }
 
 .bg-mid {
   background: url('~@/assets/images/mobile-mid.png');
+
+  @include media-breakpoint-up(md) {
+    background: #000 url('~@/assets/images/middle.png') no-repeat center center;
+  }
 }
 
 .bg-pattern {
@@ -122,6 +139,16 @@ section {
   p {
     margin: 0;
     padding: 5px 0;
+  }
+}
+
+.map-responsive {
+  position: relative;
+  height: 500px;
+
+  iframe {
+    height: 100%;
+    width: 100%;
   }
 }
 </style>
