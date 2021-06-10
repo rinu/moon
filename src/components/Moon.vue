@@ -12,8 +12,45 @@
         Three hundred years ago, the Irish empiricist prescient observation: The only thing we can perceive are our perceptions.
       </p>
     </section>
-    <section>
-      Viimati lõppenud
+    <section class="auction text-center">
+      <h5>
+        Viimati lõppenud
+      </h5>
+      <img :src="auction.imageUrl">
+      <h4>
+        {{ auction.title }}
+      </h4>
+      <div class="row">
+        <div class="col">
+          <div class="orange">
+            {{ auction.currentPriceEur }}€
+          </div>
+          <small>
+            hetke hind
+          </small>
+        </div>
+        <div class="col">
+          <div class="orange">
+            <span
+                v-for="(label, index) in timeLeftLabels"
+                :key="index"
+            >
+              {{ timeLeft[label] }} {{ label }}
+            </span>
+          </div>
+          <small>
+            lõpuni jäänud
+          </small>
+        </div>
+        <div class="col">
+          <div class="orange">
+            {{ auction.currentBids }}
+          </div>
+          <small>
+            pakkumist
+          </small>
+        </div>
+      </div>
     </section>
     <section class="bg-mid text-white">
       <h2>Messing with the light</h2>
@@ -75,8 +112,75 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+const MILLISECONDS_MINUTE = 60 * 1000;
+const MILLISECONDS_HOUR = 60 * MILLISECONDS_MINUTE;
+const MILLISECONDS_DAY = 24 * MILLISECONDS_HOUR;
+
 export default {
-  name: 'Moon'
+  name: 'Moon',
+  data () {
+    return {
+      auction: {},
+      timeToEnd: 0
+    }
+  },
+  computed: {
+    timeLeft () {
+      return {
+        days: Math.floor(this.timeToEnd / MILLISECONDS_DAY),
+        hours: Math.floor((this.timeToEnd % MILLISECONDS_DAY) / MILLISECONDS_HOUR),
+        minutes: Math.floor((this.timeToEnd % MILLISECONDS_HOUR) / MILLISECONDS_MINUTE),
+        seconds: Math.floor((this.timeToEnd % MILLISECONDS_MINUTE) / 1000)
+      }
+    },
+    timeLeftLabels () {
+      const labels = []
+      const timeLeft = this.timeLeft
+
+      if (timeLeft.days > 0) {
+        labels.push('days')
+      }
+
+      if (timeLeft.hours > 0) {
+        labels.push('hours')
+      }
+
+      if (timeLeft.minutes > 0 && labels.length === 1) {
+        labels.push('minutes')
+      }
+
+      if (timeLeft.seconds > 0 && labels.length === 1) {
+        labels.push('seconds')
+      }
+
+      return labels
+    }
+  },
+  async created () {
+    const auctionResponse = await axios.get('https://api.osta.ee/api/items/active/156446402')
+
+    if (auctionResponse && auctionResponse.data) {
+      this.auction = auctionResponse.data
+      this.setTimeToEnd()
+    }
+  },
+  methods: {
+    setTimeToEnd () {
+      if (this.auction.dateEnd) {
+        const endDate = new Date(this.auction.dateEnd)
+        this.timeToEnd = endDate.getTime() - Date.now()
+
+        if (this.timeToEnd <= 0) {
+          this.timeToEnd = 0
+          return;
+        }
+
+        setTimeout(this.setTimeToEnd, 1000)
+      }
+    }
+  }
 }
 </script>
 
@@ -129,7 +233,7 @@ export default {
   left: 5px;
 }
 
-h2 {
+h2, h3 {
   text-transform: uppercase;
 }
 
@@ -137,8 +241,25 @@ section {
   padding: 10px;
 
   p {
-    margin: 0;
+    margin: 1rem 0;
     padding: 5px 0;
+  }
+}
+
+section.auction {
+  h5 {
+    color: #999;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+  }
+
+  .orange {
+    color: #fb6520;
+    font-weight: bold;
   }
 }
 
