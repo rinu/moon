@@ -266,6 +266,7 @@ export default {
 
 h2, h3 {
   text-transform: uppercase;
+  font-family: Oswald,serif;
 }
 
 section {
