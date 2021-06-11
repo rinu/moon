@@ -187,8 +187,10 @@ export default {
       return labels.join(', ')
     }
   },
-  async created () {
-    axios.get(`https://api.osta.ee/api/items/active/${process.env.VUE_APP_AUCTION_ID}`)
+  created () {
+    const auctionId = this.$route.query.auction || process.env.VUE_APP_AUCTION_ID
+
+    axios.get(`https://api.osta.ee/api/items/active/${auctionId}`)
       .then(auctionResponse => {
         if (auctionResponse && auctionResponse.data) {
           this.auction = auctionResponse.data

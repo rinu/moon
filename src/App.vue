@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <moon />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Moon from './components/Moon.vue'
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+
+const router = new Router({
+  mode: 'history',
+  routes: [{
+    path: '/',
+    component: () => import('./components/Moon.vue')
+  }]
+})
 
 export default {
-  name: 'App',
-  components: {
-    Moon
-  }
+  router,
+  name: 'App'
 }
 </script>
 
