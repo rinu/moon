@@ -2,7 +2,7 @@
   <div>
     <section class="bg-top">
     </section>
-    <section class="bg-pattern">
+    <section class="container bg-pattern d-md-none">
       <h2>Is the web possible without the spider?</h2>
       <p>
         Are space and time physical objects that would continue to exist even it living creatures were removed from the scene?
@@ -12,96 +12,110 @@
         Three hundred years ago, the Irish empiricist prescient observation: The only thing we can perceive are our perceptions.
       </p>
     </section>
-    <section class="auction text-center">
+    <section class="container auction text-center">
       <h5>
         Viimati lõppenud
       </h5>
-      <img :src="auction.imageUrl">
-      <h4>
-        {{ auction.title }}
-      </h4>
       <div class="row">
-        <div class="col">
-          <div class="orange">
-            {{ auction.currentPriceEur }}€
-          </div>
-          <small>
-            hetke hind
-          </small>
+        <div class="col-12 col-md-4">
+          <img
+            v-if="auction.imageUrl"
+            :src="auction.imageUrl"
+          >
         </div>
-        <div class="col">
-          <div class="orange">
-            <span
-                v-for="(label, index) in timeLeftLabels"
-                :key="index"
-            >
-              {{ timeLeft[label] }} {{ label }}
-            </span>
+        <div class="col-12 col-md-8 mt-md-5">
+          <h4>
+            {{ auction.title }}
+          </h4>
+          <div class="row">
+            <div class="col">
+              <div class="orange">
+                {{ auction.currentPriceEur }}€
+              </div>
+              <small>
+                hetke hind
+              </small>
+            </div>
+            <div class="col">
+              <div class="orange">
+                {{ timeLeftLabel }}
+              </div>
+              <small>
+                lõpuni jäänud
+              </small>
+            </div>
+            <div class="col">
+              <div class="orange">
+                {{ auction.currentBids }}
+              </div>
+              <small>
+                pakkumist
+              </small>
+            </div>
           </div>
-          <small>
-            lõpuni jäänud
-          </small>
-        </div>
-        <div class="col">
-          <div class="orange">
-            {{ auction.currentBids }}
-          </div>
-          <small>
-            pakkumist
-          </small>
         </div>
       </div>
     </section>
     <section class="bg-mid text-white">
-      <h2>Messing with the light</h2>
-      <ul>
-        <li>
-          Quantum mechanics is the physicist's most accurate model for describing the world of the atom.
-        </li>
-        <li>
-          But it also makes some of the most persuasive arguments that conscious perception is integral to the workings of the universe.
-        </li>
-        <li>
-          Quantum theory tells us that an unobserved small object.
-        </li>
-      </ul>
-      <h3>What accomplishes this collapse?</h3>
-      <p>
-        What accomplishes this collapse? Messing with it. Hitting it with a bit of light in order to take its picture. Just looking at it does the job.
-      </p>
-      <p>
-        Experiments suggest mere knowledge in the experimenter's mind is sufficient to collapse a wave function and convert possibility to reality.
-      </p>
+      <div class="container">
+        <h2>Messing with the light</h2>
+        <ul>
+          <li>
+            Quantum mechanics is the physicist's most accurate model for describing the world of the atom.
+          </li>
+          <li>
+            But it also makes some of the most persuasive arguments that conscious perception is integral to the workings of the universe.
+          </li>
+          <li>
+            Quantum theory tells us that an unobserved small object.
+          </li>
+        </ul>
+        <h3>What accomplishes this collapse?</h3>
+        <p>
+          What accomplishes this collapse? Messing with it. Hitting it with a bit of light in order to take its picture. Just looking at it does the job.
+        </p>
+        <p>
+          Experiments suggest mere knowledge in the experimenter's mind is sufficient to collapse a wave function and convert possibility to reality.
+        </p>
+      </div>
     </section>
     <section class="bg-pattern">
-      <h2>Want higher?</h2>
-      <p>
-        Before these experiments most physicists believed in an objective, independent universe.
-        They still clung to the assumption that physical states exist in some absolute sense before they are measured.
-      </p>
+      <div class="container">
+        <h2>Want higher?</h2>
+        <p>
+          Before these experiments most physicists believed in an objective, independent universe.
+          They still clung to the assumption that physical states exist in some absolute sense before they are measured.
+        </p>
+      </div>
     </section>
     <section class="bg-pattern">
-      <h2>Contact us</h2>
-      <p>Before these experiments most</p>
-      <p>
-        <i class="icon email"></i>
-        <span class="icon-text">
-          info@allepal.ee
-        </span>
-        <br>
-        <i class="icon phone"></i>
-        <span class="icon-text">
-          +372 65656565
-        </span>
-      </p>
-    </section>
-    <section class="bg-pattern">
-      <h2>Location</h2>
-      <p>
-        AllePal OÜ<br>
-        Maakri 23a<br>
-        10145 Tallinn, Eesti
-      </p>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <h2>Contact us</h2>
+            <p>Before these experiments most</p>
+            <p>
+              <i class="icon email"></i>
+              <span class="icon-text">
+                info@allepal.ee
+              </span>
+              <br>
+              <i class="icon phone"></i>
+              <span class="icon-text">
+                +372 65656565
+              </span>
+            </p>
+          </div>
+          <div class="col-12 col-md-6">
+            <h2>Location</h2>
+            <p>
+              AllePal OÜ<br>
+              Maakri 23a<br>
+              10145 Tallinn, Eesti
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="p-0">
       <div class="map-responsive">
@@ -122,7 +136,10 @@ export default {
   name: 'Moon',
   data () {
     return {
-      auction: {},
+      auction: {
+        currentPriceEur: 0,
+        currentBids: 0
+      },
       timeToEnd: 0
     }
   },
@@ -135,36 +152,41 @@ export default {
         seconds: Math.floor((this.timeToEnd % MILLISECONDS_MINUTE) / 1000)
       }
     },
-    timeLeftLabels () {
+    timeLeftLabel () {
+      if (this.timeToEnd === 0) {
+        return 'Okjson on lõppenud'
+      }
+
       const labels = []
       const timeLeft = this.timeLeft
 
       if (timeLeft.days > 0) {
-        labels.push('days')
+        labels.push(timeLeft.days + ' päeva')
       }
 
       if (timeLeft.hours > 0) {
-        labels.push('hours')
+        labels.push(timeLeft.hours + ' tundi')
       }
 
-      if (timeLeft.minutes > 0 && labels.length === 1) {
-        labels.push('minutes')
+      if (timeLeft.minutes > 0 && labels.length < 2) {
+        labels.push(timeLeft.minutes + ' minutit')
       }
 
-      if (timeLeft.seconds > 0 && labels.length === 1) {
-        labels.push('seconds')
+      if (timeLeft.seconds > 0 && labels.length < 2) {
+        labels.push(timeLeft.seconds + ' sekundit')
       }
 
-      return labels
+      return labels.join(', ')
     }
   },
   async created () {
-    const auctionResponse = await axios.get('https://api.osta.ee/api/items/active/156446402')
-
-    if (auctionResponse && auctionResponse.data) {
-      this.auction = auctionResponse.data
-      this.setTimeToEnd()
-    }
+    axios.get(`https://api.osta.ee/api/items/active/${process.env.VUE_APP_AUCTION_ID}`)
+      .then(auctionResponse => {
+        if (auctionResponse && auctionResponse.data) {
+          this.auction = auctionResponse.data
+          this.setTimeToEnd()
+        }
+      }, () => {})
   },
   methods: {
     setTimeToEnd () {
