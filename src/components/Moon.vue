@@ -2,17 +2,19 @@
   <div>
     <section class="bg-top">
     </section>
-    <section class="container bg-pattern d-md-none">
-      <h2>Is the web possible without the spider?</h2>
-      <p>
-        Are space and time physical objects that would continue to exist even it living creatures were removed from the scene?
-      </p>
-      <p>
-        Figuring out the nature of the real world has obsessed scientists and philosophers for millennia.
-        Three hundred years ago, the Irish empiricist prescient observation: The only thing we can perceive are our perceptions.
-      </p>
+    <section class="bg-pattern d-md-none">
+      <div class="container my-4">
+        <h2>Is the web possible without the spider?</h2>
+        <p>
+          Are space and time physical objects that would continue to exist even it living creatures were removed from the scene?
+        </p>
+        <p>
+          Figuring out the nature of the real world has obsessed scientists and philosophers for millennia.
+          Three hundred years ago, the Irish empiricist prescient observation: The only thing we can perceive are our perceptions.
+        </p>
+      </div>
     </section>
-    <section class="container auction text-center">
+    <section class="container auction text-center my-4">
       <h5>
         Viimati lõppenud
       </h5>
@@ -24,7 +26,7 @@
           >
         </div>
         <div class="col-12 col-md-8 mt-md-5">
-          <h4>
+          <h4 class="my-4">
             {{ auction.title }}
           </h4>
           <div class="row">
@@ -57,30 +59,36 @@
       </div>
     </section>
     <section class="bg-mid text-white">
-      <div class="container">
+      <div class="container my-5">
         <h2>Messing with the light</h2>
-        <ul>
-          <li>
-            Quantum mechanics is the physicist's most accurate model for describing the world of the atom.
-          </li>
-          <li>
-            But it also makes some of the most persuasive arguments that conscious perception is integral to the workings of the universe.
-          </li>
-          <li>
-            Quantum theory tells us that an unobserved small object.
-          </li>
-        </ul>
-        <h3>What accomplishes this collapse?</h3>
-        <p>
-          What accomplishes this collapse? Messing with it. Hitting it with a bit of light in order to take its picture. Just looking at it does the job.
-        </p>
-        <p>
-          Experiments suggest mere knowledge in the experimenter's mind is sufficient to collapse a wave function and convert possibility to reality.
-        </p>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <ul>
+              <li>
+                Quantum mechanics is the physicist's most accurate model for describing the world of the atom.
+              </li>
+              <li>
+                But it also makes some of the most persuasive arguments that conscious perception is integral to the workings of the universe.
+              </li>
+              <li>
+                Quantum theory tells us that an unobserved small object.
+              </li>
+            </ul>
+          </div>
+          <div class="col-12 col-md-6 mt-5 mt-md-0">
+            <h4>What accomplishes this collapse?</h4>
+            <p>
+              What accomplishes this collapse? Messing with it. Hitting it with a bit of light in order to take its picture. Just looking at it does the job.
+            </p>
+            <p>
+              Experiments suggest mere knowledge in the experimenter's mind is sufficient to collapse a wave function and convert possibility to reality.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
     <section class="bg-pattern">
-      <div class="container">
+      <div class="container mt-5">
         <h2>Want higher?</h2>
         <p>
           Before these experiments most physicists believed in an objective, independent universe.
@@ -89,7 +97,7 @@
       </div>
     </section>
     <section class="bg-pattern">
-      <div class="container">
+      <div class="container my-5">
         <div class="row">
           <div class="col-12 col-md-6">
             <h2>Contact us</h2>
@@ -222,10 +230,11 @@ export default {
 }
 
 .bg-mid {
-  background: url('~@/assets/images/mobile-mid.png');
+  background: url('~@/assets/images/mobile-mid.png') no-repeat center center;
+  background-size: cover;
 
   @include media-breakpoint-up(md) {
-    background: #000 url('~@/assets/images/middle.png') no-repeat center center;
+    background: url('~@/assets/images/middle.png') no-repeat center center;
   }
 }
 
@@ -260,11 +269,10 @@ h2, h3 {
 }
 
 section {
-  padding: 10px;
+  padding: 4px;
 
   p {
     margin: 1rem 0;
-    padding: 5px 0;
   }
 }
 
@@ -282,6 +290,12 @@ section.auction {
   .orange {
     color: #fb6520;
     font-weight: bold;
+  }
+}
+
+ul {
+  li {
+    margin: 1rem 0;
   }
 }
 
