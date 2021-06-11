@@ -26,12 +26,12 @@
           >
         </div>
         <div class="col-12 col-md-8 mt-md-5">
-          <h4 class="my-4">
+          <h3 class="my-4">
             {{ auction.title }}
-          </h4>
+          </h3>
           <div class="row">
             <div class="col">
-              <div class="orange">
+              <div class="orange h3">
                 {{ auction.currentPriceEur }}€
               </div>
               <small>
@@ -39,7 +39,7 @@
               </small>
             </div>
             <div class="col">
-              <div class="orange">
+              <div class="orange h4">
                 {{ timeLeftLabel }}
               </div>
               <small>
@@ -47,7 +47,7 @@
               </small>
             </div>
             <div class="col">
-              <div class="orange">
+              <div class="orange h4">
                 {{ auction.currentBids }}
               </div>
               <small>
@@ -264,7 +264,7 @@ export default {
   left: 5px;
 }
 
-h2, h3 {
+h2, h4 {
   text-transform: uppercase;
   font-family: Oswald,serif;
 }
